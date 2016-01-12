@@ -2,17 +2,20 @@
 'use strict';
 
 (function(){
+    var activateResponsiveImages;
     //setup functions
     filepicker.internal(function(){
         var fp = this;
         fp.util.addOnLoad(fp.cookies.checkThirdParty);
         fp.util.addOnLoad(fp.widgets.buildWidgets);
-        fp.util.addOnLoad(fp.responsiveImages.activate);
+        //fp.util.addOnLoad(fp.responsiveImages.activate);
+        activateResponsiveImages = fp.responsiveImages.activate;
     });
 
     //Now we wipe our superpowers
     delete filepicker.internal;
     delete filepicker.extend;
+    filepicker.activateResponsiveImages = activateResponsiveImages;
 
     //process the queue
     var queue = filepicker._queue || [];
